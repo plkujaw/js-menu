@@ -93,10 +93,17 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 // load items
 window.addEventListener("DOMContentLoaded", () => {
   displayMenuItems(menu);
+
+  // get only unique categories
+  const categories = menu.reduce((menuCategories, menuItem) => {
+    if (!menuCategories.includes(menuItem.category)) {
+      menuCategories.push(menuItem.category);
+    }
+    return menuCategories;
+  }, ["all"]);
 });
 
 // filter items
-
 filterButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const category = event.currentTarget.dataset.category;
